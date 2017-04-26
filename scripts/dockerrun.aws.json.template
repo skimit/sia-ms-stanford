@@ -1,0 +1,15 @@
+{
+    "AWSEBDockerrunVersion": "1",
+    "Image": {
+        "Name": "skimit/sia-ms-stanford:<TAG>"
+    },
+    "Authentication": {
+        "Bucket": "sia-docker-config",
+        "Key": "docker-config.json"
+    },
+    "Ports": [
+        {
+            "ContainerPort": "3000"
+        }
+    ]
+}
