@@ -64,12 +64,11 @@ public class Main {
         // this is the date of the document- temporal expressions like "tomorrow" are resolved relative to it
         annotation.set(CoreAnnotations.DocDateAnnotation.class, new DateTime().toString("Y-M-d"));
         pipeline.annotate(annotation);
-        System.out.println(annotation.get(CoreAnnotations.TextAnnotation.class));
         List<CoreMap> timexAnnsAll = annotation.get(TimeAnnotations.TimexAnnotations.class);
 
         return timexAnnsAll.stream().map(cm -> new ResolvedTimePojo(
                 cm.toString(),
-                cm.get(TimeExpression.Annotation.class).getTemporal().toString())).collect(Collectors.toList());
+                cm.get(TimeExpression.Annotation.class).getTemporal().getRange().begin().toISOString())).collect(Collectors.toList());
     }
 
 
