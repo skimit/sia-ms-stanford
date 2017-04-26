@@ -10,6 +10,7 @@ Build and run locally:
  - `brew install gradle`
  - `gradle clean shadow`
  - `java -cp 'build/libs/stanford-corenlp-1.0-all.jar:stanford-corenlp-3.7.0-models.jar' it.skim.Main`
+ - `curl -X POST --data-binary @test.json localhost:3000/`
 
 Docker (optional)
 
