@@ -12,6 +12,8 @@ Build and run locally:
  - `java -cp 'build/libs/stanford-corenlp-1.0-all.jar:stanford-corenlp-3.7.0-models.jar' it.skim.Main`
  - `curl -X POST --data-binary @test.json localhost:3000/`
 
+Examples of input and output values are in available in the `tests` directory. To run the tests, add `stanford-corenlp-3.7.0-models.jar` to the classpath and then run `gradle test`.
+
 Docker (optional)
 
  - `docker build -t skimit/sia-ms-stanford .`
@@ -24,6 +26,21 @@ Docker (optional)
   - `./scripts/deployment_updateEnvironment.sh latest dev`
   - at some point we should start using the git commit as the application version (as we do on circle) rather than `latest`
 
+# Example parses of temporal expressions
+Assuming current date is 2010-10-10 10:10:10, then
+
+```
+last year --> 2009-01-01
+a minute ago --> 2010-10-10T10:09:10.000
+since last week --> 2010-09-27
+this week --> 2010-10-04
+a week ago --> 2010-10-03T10:10:10.000
+```
+
+Known failures:
+```
+since Tuesday --> 2010-10-12 // refers to next Tuesday
+```
 
 # Original Readme
 Stanford CoreNLP - Stanford's Suite of NLP Tools
