@@ -78,16 +78,15 @@ public class Main {
                 long duration = temporal.getDuration().getJodaTimeDuration().getMillis();
                 iso = relativeTo.minus(duration).toString();
             } else {
-                iso = temporal.getRange().begin().toString();
+                try {
+                    iso = temporal.getRange().begin().toISOString();
+                } catch (Exception e) {
+                    iso = temporal.toISOString();
+                }
             }
             res.add(new ResolvedTimePojo(cm.toString(), iso));
         }
         return res;
-//        // if timex type is DURATION, use something this instead:
-////        Instant.now().minusMillis(cm.get(temporal.getDuration().getJodaTimeDuration().getMillis()).toString()
-//        return timexAnnsAll.stream().map(cm -> new ResolvedTimePojo(
-//                cm.toString(),
-//                cm.get(TimeExpression.Annotation.class).getTemporal().getRange().begin().toISOString())).collect(Collectors.toList());
     }
 
 
